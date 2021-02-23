@@ -1,48 +1,55 @@
 package org.academy.ui;
 
+import org.academy.ui.pages.administration.ProjectsPage;
 import org.academy.ui.pages.project.EditProjectPage;
-import org.academy.ui.pages.MainPage;
 import org.academy.ui.pages.project.TestSuite;
+import org.academy.ui.steps.DeleteProjectSteps;
 import org.academy.ui.steps.LoginSteps;
-import org.academy.ui.steps.ProjectSteps;
-import org.academy.utils.ui.WebConfig;
-import org.openqa.selenium.By;
-import org.testng.annotations.BeforeClass;
+import org.academy.ui.steps.AddProjectSteps;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class EditProjectTest extends BaseTest {
     private LoginSteps loginSteps = new LoginSteps();
-    private ProjectSteps projectSteps = new ProjectSteps();
+    private AddProjectSteps addProjectSteps = new AddProjectSteps();
+    private DeleteProjectSteps deleteSteps = new DeleteProjectSteps();
 
     private EditProjectPage editProjectPage;
+    private ProjectsPage projectsPage;
+
+    private final String projectName = "Edit Project Test";
 
     @BeforeMethod(alwaysRun = true)
-    public void precondtion() {
+    public void precondition() {
         loginSteps.makeLogin();
-        editProjectPage = projectSteps.openEditProjectPage();
+        editProjectPage = addProjectSteps.createProject(projectName).clickOnProjectPage(projectName);
     }
 
     @Test
-    public void editSuiteOfProjectTest() throws InterruptedException {
-        editProjectPage.chooseTestSuite(TestSuite.MULTIPLE)
-                .scrollToAcceptBtn()
-                .clickOnAcceptBtn();
-    }
-
-    @Test(groups = "editAnnouncement")
-    public void clearAnnouncementTest() throws InterruptedException {
-        editProjectPage
-                .clearAnnouncementField()
-                .scrollToAcceptBtn()
+    public void editSuiteOfProjectTest() {
+        projectsPage = editProjectPage
+                .chooseTestSuite(TestSuite.MULTIPLE)
                 .clickOnAcceptBtn();
     }
 
     @Test(priority = 1, groups = "editAnnouncement")
-    public void updateAnnouncementTest() throws InterruptedException {
-        editProjectPage
-                .fillAnnouncementField(WebConfig.getProjectAnnouncement())
-                .scrollToAcceptBtn()
+    public void clearAnnouncementTest() {
+        projectsPage = editProjectPage
+                .clearAnnouncementField()
                 .clickOnAcceptBtn();
+    }
+
+    @Test(groups = "editAnnouncement")
+    public void updateAnnouncementTest() {
+        projectsPage = editProjectPage
+                .fillAnnouncementField(getProjectAnnouncement())
+                .clickOnAcceptBtn();
+    }
+
+    @AfterMethod
+    public void deleteProject() {
+        projectsPage.clickOnDashboardBtn();
+        deleteSteps.deleteProject(projectName);
     }
 }

@@ -46,12 +46,8 @@ public class AddProjectPage extends AbstractPage {
         return this;
     }
 
-    public AddProjectPage scrollToAcceptBtn() throws InterruptedException {
+    public ProjectsPage clickOnAcceptBtn() {
         scrollToElement(webDriver, webDriver.findElement(acceptBtn));
-        return this;
-    }
-
-    public ProjectsPage clickOnAcceptBtn(){
         waitUntilElementIsClickable(acceptBtn).click();
         return new ProjectsPage();
     }

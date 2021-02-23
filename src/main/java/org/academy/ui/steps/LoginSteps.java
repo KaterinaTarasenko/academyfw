@@ -3,17 +3,16 @@ package org.academy.ui.steps;
 import lombok.extern.slf4j.Slf4j;
 import org.academy.ui.pages.LoginPage;
 import org.academy.ui.pages.MainPage;
-import org.academy.utils.ui.WebConfig;
 
 @Slf4j
-public class LoginSteps {
+public class LoginSteps extends Steps {
     private MainPage mainPage;
 
     public MainPage makeLogin() {
         if (mainPage == null)
-            mainPage = new LoginPage(true, WebConfig.getAccountUrl())
-                    .fillLoginField(WebConfig.getLogin())
-                    .fillPassField(WebConfig.getPassword())
+            mainPage = new LoginPage(true, getAccountUrl())
+                    .fillLoginField(getEmail())
+                    .fillPassField(getPassword())
                     .clickOnLoginButton();
         return mainPage;
     }

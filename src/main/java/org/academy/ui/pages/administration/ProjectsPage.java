@@ -1,10 +1,12 @@
 package org.academy.ui.pages.administration;
 
-import org.academy.ui.pages.AbstractPage;
+import org.academy.ui.pages.AddProjectPage;
 import org.academy.ui.pages.project.EditProjectPage;
 import org.openqa.selenium.By;
 
-public class ProjectsPage extends AbstractPage {
+public class ProjectsPage extends AdministrationPage {
+    private static final By addProjectBtn = By.xpath("//a[@href='index.php?/admin/projects/add']");
+
     private static final By confirmText = By.xpath("//strong[contains(.,'Yes, delete this project (cannot be undone)')]");
     private static final By okButton = By.xpath("(//a[contains(.,'OK')])[3]");
 
@@ -36,5 +38,10 @@ public class ProjectsPage extends AbstractPage {
     public ProjectsPage clickOnOkBtn() {
         waitUntilElementIsPresent(okButton).click();
         return this;
+    }
+
+    public AddProjectPage clickOnAddProjectBtn() {
+        waitUntilElementIsClickable(addProjectBtn).click();
+        return new AddProjectPage();
     }
 }

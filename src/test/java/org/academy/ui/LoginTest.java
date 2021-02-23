@@ -1,6 +1,5 @@
 package org.academy.ui;
 
-import org.academy.utils.ui.WebConfig;
 import org.academy.ui.pages.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,22 +9,22 @@ public class LoginTest extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void precondition() {
-        loginPage = new LoginPage(true, WebConfig.getAccountUrl());
+        loginPage = new LoginPage(true, getAccountUrl());
     }
 
     @Test
     public void positiveLoginTest() {
         loginPage
-                .fillLoginField(WebConfig.getLogin())
-                .fillPassField(WebConfig.getPassword())
+                .fillLoginField(getEmail())
+                .fillPassField(getPassword())
                 .clickOnLoginButton();
     }
 
     @Test
     public void logoutTest() {
         loginPage
-                .fillLoginField(WebConfig.getLogin())
-                .fillPassField(WebConfig.getPassword())
+                .fillLoginField(getEmail())
+                .fillPassField(getPassword())
                 .clickOnLoginButton()
                 .clickOnMyUsername()
                 .clickOnLogout();
