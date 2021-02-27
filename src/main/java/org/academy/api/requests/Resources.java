@@ -18,4 +18,12 @@ public class Resources extends MainConfig {
     public static String addProjectResource() {
         return read("rs.add_project");
     }
+
+    public static String getProjectResource() {
+        return read("rs.get_project");
+    }
+
+    public static String updateProjectResource() {
+        return read("rs.update_project");
+    }
 }
