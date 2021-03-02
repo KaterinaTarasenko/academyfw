@@ -19,6 +19,14 @@ public class Resources extends MainConfig {
         return read("rs.add_project");
     }
 
+    public static String getProjectResource() {
+        return read("rs.get_project");
+    }
+
+    public static String updateProjectResource() {
+        return read("rs.update_project");
+    }
+
     public static String milestoneResource(String milestoneId){
         return read ("rs.get_milestone").concat(milestoneId);
     }

@@ -1,11 +1,41 @@
 package org.academy.api.payloads;
 
-public class ProjectPayloads {
-    public String projectPayload(String projectName) {
-        return String.format("{\n" +
-                "\t\"name\": \"%s\",\n" +
-                "\t\"announcement\": \"This is the description for the project\",\n" +
-                "\t\"show_announcement\": true\n" +
-                "}", projectName);
+import lombok.extern.slf4j.Slf4j;
+import org.academy.api.models.project.ProjectModel;
+import org.json.JSONObject;
+
+@Slf4j
+public class ProjectPayloads extends Payload {
+
+    public String createProjectPayload(String name, String announcement, boolean showAnnouncement, int... suiteMode) {
+
+        ProjectModel projectModel = suiteMode.length > 0
+                ? new ProjectModel.Builder()
+                .name(name)
+                .announcement(announcement)
+                .showAnnouncement(showAnnouncement)
+                .suiteMode(suiteMode[0])
+                .build()
+
+                : new ProjectModel.Builder()
+                .name(name)
+                .announcement(announcement)
+                .showAnnouncement(showAnnouncement)
+                .build();
+
+        String payload = jsonFromObject(projectModel);
+        log.info("payload created = \r\n" + payload);
+        return payload;
+    }
+
+    public JSONObject projectAllFieldsPayload(String projectName) {
+        JSONObject requestParams = new JSONObject();
+
+        requestParams.put("name", projectName);
+        requestParams.put("announcement", ANNOUNCEMENT);
+        requestParams.put("show_announcement", SHOW_ANNOUNCEMENT);
+        requestParams.put("is_completed", IS_COMPLETED);
+
+        return requestParams;
     }
 }
