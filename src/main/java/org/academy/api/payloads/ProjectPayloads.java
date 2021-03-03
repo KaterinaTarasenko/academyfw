@@ -28,7 +28,21 @@ public class ProjectPayloads extends Payload {
         return payload;
     }
 
-    public JSONObject projectAllFieldsPayload(String projectName) {
+    public String updateProjectPayload(String name, String announcement, boolean showAnnouncement, boolean isCompleted) {
+
+        ProjectModel projectModel = new ProjectModel.Builder()
+                .name(name)
+                .announcement(announcement)
+                .showAnnouncement(showAnnouncement)
+                .isCompleted(isCompleted)
+                .build();
+
+        String payload = jsonFromObject(projectModel);
+        log.info("payload updated = \r\n" + payload);
+        return payload;
+    }
+
+    /*public JSONObject projectAllFieldsPayload(String projectName) {
         JSONObject requestParams = new JSONObject();
 
         requestParams.put("name", projectName);
@@ -37,5 +51,5 @@ public class ProjectPayloads extends Payload {
         requestParams.put("is_completed", IS_COMPLETED);
 
         return requestParams;
-    }
+    }*/
 }

@@ -20,10 +20,10 @@ public class Resources extends MainConfig {
     }
 
     public static String getProjectResource() {
-        return read("rs.get_project");
+        return read("rs.get_project").concat("9");
     }
 
     public static String updateProjectResource() {
-        return read("rs.update_project");
+        return read("rs.update_project").concat("9");
     }
 }

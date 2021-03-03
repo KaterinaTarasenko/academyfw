@@ -11,6 +11,7 @@ public class ProjectModel {
     @JsonProperty("suite_mode")
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private int suiteMode;
+    private boolean isCompleted;
 
     public ProjectModel() {
     }
@@ -20,6 +21,7 @@ public class ProjectModel {
         announcement = builder.announcement;
         showAnnouncement = builder.showAnnouncement;
         suiteMode = builder.suiteMode;
+        isCompleted = builder.isCompleted;
     }
 
     public String getName() {
@@ -54,11 +56,19 @@ public class ProjectModel {
         this.suiteMode = suiteMode;
     }
 
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(boolean isCompleted) { this.isCompleted = isCompleted;
+    }
+
     public static class Builder {
         private String name;
         private String announcement;
         private boolean showAnnouncement;
         private int suiteMode;
+        private boolean isCompleted;
 
         public Builder() {
         }
@@ -80,6 +90,11 @@ public class ProjectModel {
 
         public Builder suiteMode(int suiteMode) {
             this.suiteMode = suiteMode;
+            return this;
+        }
+
+        public Builder isCompleted(boolean isCompleted) {
+            this.isCompleted = isCompleted;
             return this;
         }
 
