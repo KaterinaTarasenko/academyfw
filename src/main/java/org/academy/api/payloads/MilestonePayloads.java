@@ -6,7 +6,24 @@ import org.academy.api.models.project.MilestoneModel;
 @Slf4j
 public class MilestonePayloads extends Payload {
 
-    public String updateMilestonePayloadCompleteField(String name, String description, boolean... isCompleted){
+    public String addMilestoneToProjectPayload(String name, String... description){
+
+        MilestoneModel milestoneModel = description.length > 0
+                ? new MilestoneModel.Builder()
+                .name(name)
+                .description(description[0])
+                .build()
+
+                : new MilestoneModel.Builder()
+                .name(name)
+                .build();
+
+        String payload = jsonFromObject(milestoneModel);
+        log.info("payload created = \r\n" + payload);
+        return payload;
+    }
+
+    public String updateMilestoneWithCompleteField(String name, String description, boolean... isCompleted){
         MilestoneModel milestoneModel = isCompleted.length > 0
                 ? new MilestoneModel.Builder()
                 .name(name)
@@ -24,7 +41,7 @@ public class MilestonePayloads extends Payload {
         return payload;
     }
 
-    public String updateMilestonePayloadStartedField(String name, String description, boolean... isStarted){
+    public String updateMilestoneWithStartedField(String name, String description, boolean... isStarted){
         MilestoneModel milestoneModel = isStarted.length > 0
                 ? new MilestoneModel.Builder()
                 .name(name)

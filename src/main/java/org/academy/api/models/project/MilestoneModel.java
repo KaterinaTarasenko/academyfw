@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MilestoneModel {
     private String name;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private String description;
     @JsonProperty("is_completed")
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
