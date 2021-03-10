@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 @Slf4j
 public class ProjectPayloads extends Payload {
-
+    
     public String createProjectPayload(String name, String announcement, boolean showAnnouncement, int... suiteMode) {
 
         ProjectModel projectModel = suiteMode.length > 0

@@ -15,6 +15,10 @@ public class Resources extends MainConfig {
         return read("rs.all_suites");
     }
 
+    public static String allCasesResource() {
+        return read("rs.all_cases");
+    }
+
     public static String addProjectResource() {
         return read("rs.add_project");
     }
@@ -25,5 +29,13 @@ public class Resources extends MainConfig {
 
     public static String updateProjectResource() {
         return read("rs.update_project").concat("9");
+    }
+
+    public static String addCaseResource() {
+        return read("rs.add_case");
+    }
+
+    public static String getCaseResourse() {
+        return read("rs.get_case");
     }
 }

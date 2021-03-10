@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SuiteRequests extends Requests {
+    public static int projectId = 2;
+
     public Map<String,Object> getAllSuitesRequest() {
         Response response = getMethods.withoutParams(allSuitesResource());
 
