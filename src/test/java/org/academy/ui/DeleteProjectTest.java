@@ -15,7 +15,7 @@ public class DeleteProjectTest extends BaseTest {
     private String projectName = "Remove Project";
 
     @BeforeMethod(alwaysRun = true)
-    public void precondition() throws InterruptedException {
+    public void precondition() {
         loginSteps.makeLogin();
         projectsPage = addProjectSteps.createProject(projectName);
     }

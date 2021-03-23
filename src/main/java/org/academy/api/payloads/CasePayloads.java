@@ -15,4 +15,18 @@ public class CasePayloads extends Payload {
         log.info("payload created = \r\n" + payload);
         return payload;
     }
+
+    public String createCasePayload(String title, int templateId, int typeId, int priorityId, int milestoneId) {
+
+        CaseModel model = new CaseModel.Builder()
+                .title(title)
+                .templateId(templateId)
+                .milestoneId(milestoneId)
+                .typeId(typeId)
+                .priorityId(priorityId).build();
+
+        String payload = jsonFromObject(model);
+        log.info("payload created = \r\n" + payload);
+        return payload;
+    }
 }

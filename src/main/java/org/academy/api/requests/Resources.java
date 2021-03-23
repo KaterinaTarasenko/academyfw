@@ -27,8 +27,12 @@ public class Resources extends MainConfig {
         return read("rs.get_project").concat("9");
     }
 
-    public static String updateProjectResource() {
-        return read("rs.update_project").concat("9");
+    public static String getProjectsResource() {
+        return read("rs.get_projects");
+    }
+
+    public static String updateProjectResource(int id) {
+        return read("rs.update_project").concat(String.valueOf(id));
     }
 
     public static String addCaseResource() {

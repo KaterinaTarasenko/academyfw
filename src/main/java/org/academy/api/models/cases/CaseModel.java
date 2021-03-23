@@ -301,6 +301,26 @@ public class CaseModel {
       return this;
     }
 
+    public Builder templateId(int templateId) {
+      this.templateId = templateId;
+      return this;
+    }
+
+    public Builder typeId(int typeId) {
+      this.typeId = typeId;
+      return this;
+    }
+
+    public Builder priorityId(int priorityId) {
+      this.priorityId = priorityId;
+      return this;
+    }
+
+    public Builder milestoneId(int milestoneId) {
+      this.milestoneId = milestoneId;
+      return this;
+    }
+
     public CaseModel build() {
       return new CaseModel(this);
     }

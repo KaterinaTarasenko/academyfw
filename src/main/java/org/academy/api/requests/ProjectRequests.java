@@ -1,9 +1,12 @@
 package org.academy.api.requests;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.restassured.response.Response;
+import org.academy.api.models.project.ProjectModel;
 import org.academy.api.payloads.ProjectPayloads;
 
 import org.academy.utils.api.methods.ConvertMethods;
@@ -31,20 +34,22 @@ public class ProjectRequests extends Requests {
         return ConvertMethods.convertResponseFromServerToHashMap(response);
     }
 
+    public List<ProjectModel> getProjectsRequest() {
+        Response response = getMethods.withoutParams(getProjectsResource());
+        return Arrays.asList(response.getBody().as(ProjectModel[].class));
+    }
 
     public Map<String, Object> updateProjectRequest(String projectName, String announcement, boolean showAnnouncement,
                                                     boolean isCompleted) {
         Response response =
-                postMethods.withoutParams(updateProjectResource(), projectPayloads.updateProjectPayload(projectName, announcement, showAnnouncement, isCompleted));
+                postMethods.withoutParams(updateProjectResource(9), projectPayloads.updateProjectPayload(projectName, announcement, showAnnouncement, isCompleted));
         return ConvertMethods.convertResponseFromServerToHashMap(response);
-        /*JSONObject jsonObject = new JSONObject(response.asString());
-        return new HashMap<String, Object>() {
-            {
-                put("nameOfProject", jsonObject.get("name"));
-                put("announcementOfProject", jsonObject.get("announcement"));
-                put("showAnnouncementOfProject", jsonObject.get("show_announcement"));
-                put("isCompletedOfProject", jsonObject.get("is_completed"));
-            }
-        }*/
+    }
+
+    public Map<String, Object> updateProjectRequest(int projectId, String projectName, String announcement, int suiteMode) {
+        Response response = postMethods.withoutParams(
+                updateProjectResource(projectId),
+                projectPayloads.updateProjectPayload(projectName, announcement, suiteMode));
+        return ConvertMethods.convertResponseFromServerToHashMap(response);
     }
 }
