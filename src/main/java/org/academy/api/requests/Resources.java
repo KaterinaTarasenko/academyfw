@@ -40,7 +40,7 @@ public class Resources extends MainConfig {
     }
 
     public static String addMilestoneToProjectResource() {
-        return read("rs.add_milestone").concat("9");
+        return read("rs.add_milestone").concat("5");
     }
 
     public static String getMilestonesResource() {

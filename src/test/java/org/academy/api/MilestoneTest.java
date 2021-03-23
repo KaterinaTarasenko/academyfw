@@ -22,6 +22,14 @@ public class MilestoneTest extends BaseTest {
     }
 
     @Test
+    public void addMilestoneWithoutDescriptionCase() {
+        String milestoneName = "Release_".concat(apiHelpers.getCurrentTimestamp());
+
+        Map<String, Object> attributes = milestoneRequests.addMilestoneRequest(milestoneName);
+        assertThat(String.valueOf(attributes.get("name"))).isEqualTo(milestoneName).as("name should be:" + milestoneName);
+    }
+
+    @Test
     public void updateMilestoneCase() {
         String milestoneName = "Updated_name_".concat(apiHelpers.getCurrentTimestamp());
         String description = "Updated_description_".concat(apiHelpers.getCurrentTimestamp());

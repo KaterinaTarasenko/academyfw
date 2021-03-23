@@ -21,6 +21,7 @@ public class MainPage extends AbstractPage {
     private static final By navigationUser = By.xpath("//a[@id='navigation-user']//span[@class='caret']");
     private static final By navigationUserSettings = By.xpath("//a[@id='navigation-user-settings']");
     private static final By project = By.xpath("//a[@href='index.php?/projects/overview/20'][contains(.,'TestProject')]");
+    private static final By testProject = By.xpath("//a[contains(text(),'Test Project API')]");
 
     public MainPage clickOnMyUsername() {
         waitUntilElementIsClickable(usernameLink).click();
@@ -85,6 +86,11 @@ public class MainPage extends AbstractPage {
         waitUntilElementIsClickable(project)
                 .click();
         return new RunsPage();
+    }
+
+    public MilestonePage clickOnMilestonePage(){
+        waitUntilElementIsClickable(testProject).click();
+        return new MilestonePage();
     }
 }
 
