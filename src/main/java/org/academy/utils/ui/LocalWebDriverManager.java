@@ -10,7 +10,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class LocalWebDriverManager {
@@ -37,7 +40,7 @@ public class LocalWebDriverManager {
                 chromeWebDriver.manage().window().maximize();
                 return chromeWebDriver;
 
-            case "chrome_selenium_server":
+            case "chrome_selenium_grid":
                 DesiredCapabilities caps = DesiredCapabilities.chrome();
                 RemoteWebDriver wdriver = null;
                 try {
@@ -48,6 +51,22 @@ public class LocalWebDriverManager {
                 assert wdriver != null;
                 wdriver.manage().window().maximize();
                 return wdriver;
+
+            case "chrome_selenoid":
+                DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                desiredCapabilities.setBrowserName("chrome");
+                desiredCapabilities.setVersion("89.0");
+                desiredCapabilities.setCapability("enableVNC", true);
+                RemoteWebDriver remoteWebDriver = null;
+                try {
+                    remoteWebDriver = new RemoteWebDriver(
+                            URI.create("http://localhost:4444/wd/hub").toURL(), desiredCapabilities
+                    );
+                    remoteWebDriver.manage().window().maximize();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                return remoteWebDriver;
         }
     }
 }

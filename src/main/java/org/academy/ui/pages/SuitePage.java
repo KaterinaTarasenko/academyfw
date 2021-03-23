@@ -17,6 +17,9 @@ public class SuitePage extends AbstractPage {
     private static final By testCasesLink = By.xpath("//a[@id='navigation-suites']");
     private static final By addSectionBtn = By.xpath("//a[@id='addSectionInline']");
     private static final By addSectionLink = By.xpath("//a[@id='addSection']");
+    private static final By newCaseLink = By.xpath("//tr[@id='row-9']//td//a[@rel='keep-get']//span[@class='title'][contains(text(),'New Test')]");
+    private static final By createdBy = By.xpath("//td[@class='noborder nopad-top'][contains(text(),'ssacd5 ssacd5')]");
+    private static final By priority = By.xpath("//td[@id='cell_priority_id']");
 
     public SuitePage clickOnTestCasesLink() {
         waitUntilElementIsClickable(testCasesLink).click();
@@ -45,5 +48,22 @@ public class SuitePage extends AbstractPage {
     public SuitePage clickOnAcceptBtn() {
         waitUntilElementIsClickable(acceptBtn).click();
         return this;
+    }
+
+    public SuitePage clickOnNewTestLink() {
+        waitUntilElementIsClickable(newCaseLink).click();
+        return this;
+    }
+
+    public String getPageTitle() {
+        return this.webDriver.getTitle();
+    }
+
+    public String getAuthor() {
+        return this.webDriver.findElement(createdBy).getText();
+    }
+
+    public String getPriority() {
+        return this.webDriver.findElement(priority).getText();
     }
 }

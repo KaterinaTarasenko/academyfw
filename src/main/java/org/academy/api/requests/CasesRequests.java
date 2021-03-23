@@ -10,8 +10,8 @@ import java.util.*;
 
 public class CasesRequests extends Requests {
     private final CasePayloads casePayloads = new CasePayloads();
-    private final String suiteId = "1";
-    private final String projectId = "1";
+    private final String suiteId = "2";
+    private final String projectId = "4";
     private final String caseId = "1";
 
     public Map<String, Object> createCaseRequest(String caseName) {

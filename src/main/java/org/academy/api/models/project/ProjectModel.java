@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProjectModel {
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private int id;
     private String name;
     private String announcement;
     @JsonProperty("show_announcement")
@@ -11,17 +13,34 @@ public class ProjectModel {
     @JsonProperty("suite_mode")
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private int suiteMode;
+    @JsonProperty("is_completed")
     private boolean isCompleted;
+    @JsonProperty("completed_on")
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private String completedOn;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private String url;
 
     public ProjectModel() {
     }
 
     public ProjectModel(Builder builder) {
+        id = builder.id;
         name = builder.name;
         announcement = builder.announcement;
         showAnnouncement = builder.showAnnouncement;
         suiteMode = builder.suiteMode;
         isCompleted = builder.isCompleted;
+        completedOn = builder.completedOn;
+        url = builder.url;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -60,17 +79,34 @@ public class ProjectModel {
         return isCompleted;
     }
 
-    public void setIsCompleted(boolean isCompleted) { this.isCompleted = isCompleted;
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+    public String getCompletedOn() {
+        return completedOn;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public static class Builder {
+        private int id;
         private String name;
         private String announcement;
         private boolean showAnnouncement;
         private int suiteMode;
         private boolean isCompleted;
+        private String completedOn;
+        private String url;
 
         public Builder() {
+        }
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
         }
 
         public Builder name(String name) {
@@ -95,6 +131,16 @@ public class ProjectModel {
 
         public Builder isCompleted(boolean isCompleted) {
             this.isCompleted = isCompleted;
+            return this;
+        }
+
+        public Builder completedOn(String completedOn) {
+            this.completedOn = completedOn;
+            return this;
+        }
+
+        public Builder url(String url) {
+            this.url = url;
             return this;
         }
 

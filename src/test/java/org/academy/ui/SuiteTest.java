@@ -1,6 +1,5 @@
 package org.academy.ui;
 
-import org.academy.ui.pages.SuitePage;
 import org.academy.ui.pages.MainPage;
 import org.academy.ui.steps.LoginSteps;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +22,7 @@ public class SuiteTest extends BaseTest {
 
     @Test
     public void addSuiteTest() {
-        SuitePage suitePage = mainPage
+        mainPage
                 .clickOnProjectLink()
                 .clickOnTestCasesLink()
                 .clickOnAddSectionBtn()
