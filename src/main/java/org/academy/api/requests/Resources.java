@@ -51,6 +51,10 @@ public class Resources extends MainConfig {
         return read("rs.get_milestone").concat(milestoneId);
     }
 
+    public static String getAllMilestonesResource(String projectId) {
+        return read("rs.get_all_milestones").concat(projectId);
+    }
+
     public static String updateMilestoneResource(String milestoneId) {
         return read("rs.update_milestone").concat(milestoneId);
     }
