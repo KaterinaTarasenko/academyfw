@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProjectTest extends BaseTest {
     private final ProjectRequests projectRequests = new ProjectRequests();
 
-    @Test
+    @Test(groups = "smoke_api")
     public void createProjectCase() {
         String projectName = "project_".concat(apiHelpers.getCurrentTimestamp());
         String projectDescription = dr.getRandomStringStartsUpperCase(5, 5).toString();
