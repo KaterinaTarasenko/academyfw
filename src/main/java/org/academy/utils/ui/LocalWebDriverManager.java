@@ -25,7 +25,13 @@ public class LocalWebDriverManager {
 
     public static synchronized WebDriver getWebDriver() {
         if (webDriver == null) {
-            setWebDriver(getWebDriver(MainConfig.getBrowser()));
+            String browser = System.getProperty("browser");
+            if (browser == null || browser.equals("")) {
+                setWebDriver(getWebDriver(MainConfig.getBrowser()));
+            } else {
+                setWebDriver(getWebDriver(browser));
+            }
+
         }
         return webDriver;
     }

@@ -7,6 +7,9 @@
     <groupId>org.example</groupId>
     <artifactId>academyfw</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
@@ -25,18 +28,17 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testngxml/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/testngxml/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
     </build>
     <dependencies>
-        <!--Custom web driver https://github.com/bonigarcia/webdrivermanager        -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.3.1</version>›
+            <version>4.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
