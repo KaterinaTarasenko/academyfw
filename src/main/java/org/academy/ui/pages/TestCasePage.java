@@ -1,14 +1,13 @@
 package org.academy.ui.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-public class AddTestCasePage extends AbstractPage {
-    public AddTestCasePage() {
+public class TestCasePage extends AbstractPage {
+    public TestCasePage() {
         super();
     }
 
-    public AddTestCasePage(boolean navigate, String navigateToUrl) {
+    public TestCasePage(boolean navigate, String navigateToUrl) {
         super(navigate, navigateToUrl);
     }
 
@@ -17,26 +16,26 @@ public class AddTestCasePage extends AbstractPage {
     private static final By testCaseLink = By.xpath("//a[@id='navigation-suites']");
     private static final By addTestCaseBtn = By.xpath("//a[@id='sidebar-cases-add']");
 
-    public AddTestCasePage clickOnTestCaseLink() {
+    public TestCasePage clickOnTestCaseLink() {
         waitUntilElementIsClickable(testCaseLink).click();
         return this;
     }
-    public AddTestCasePage clickOnAddTestCaseBtn() {
+    public TestCasePage clickOnAddTestCaseBtn() {
         waitUntilElementIsClickable(addTestCaseBtn).click();
         return this;
     }
 
-    public AddTestCasePage fillTitleField(String sectionName) {
+    public TestCasePage fillTitleField(String sectionName) {
         findElement(titleField).sendKeys(sectionName);
         return this;
     }
 
-    public AddTestCasePage scrollToAcceptBtn() throws InterruptedException {
+    public TestCasePage scrollToAcceptBtn() throws InterruptedException {
         scrollToElement(webDriver, webDriver.findElement(acceptBtn));
         return this;
     }
 
-    public AddTestCasePage clickOnAcceptBtn() {
+    public TestCasePage clickOnAcceptBtn() {
         waitUntilElementIsClickable(acceptBtn).click();
         return this;
     }

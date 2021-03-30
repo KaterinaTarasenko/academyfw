@@ -3,14 +3,17 @@ package org.academy.utils.ui;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import lombok.extern.slf4j.Slf4j;
+import org.academy.MainConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class LocalWebDriverManager {
@@ -22,7 +25,13 @@ public class LocalWebDriverManager {
 
     public static synchronized WebDriver getWebDriver() {
         if (webDriver == null) {
-            setWebDriver(getWebDriver(WebConfig.getBrowser()));
+            String browser = System.getProperty("browser");
+            if (browser == null || browser.equals("")) {
+                setWebDriver(getWebDriver(MainConfig.getBrowser()));
+            } else {
+                setWebDriver(getWebDriver(browser));
+            }
+
         }
         return webDriver;
     }
@@ -37,7 +46,7 @@ public class LocalWebDriverManager {
                 chromeWebDriver.manage().window().maximize();
                 return chromeWebDriver;
 
-            case "chrome_selenium_server":
+            case "chrome_selenium_grid":
                 DesiredCapabilities caps = DesiredCapabilities.chrome();
                 RemoteWebDriver wdriver = null;
                 try {
@@ -48,6 +57,22 @@ public class LocalWebDriverManager {
                 assert wdriver != null;
                 wdriver.manage().window().maximize();
                 return wdriver;
+
+            case "chrome_selenoid":
+                DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                desiredCapabilities.setBrowserName("chrome");
+                desiredCapabilities.setVersion("89.0");
+                desiredCapabilities.setCapability("enableVNC", true);
+                //desiredCapabilities.setCapability("sessionTimeout", "2m");
+                RemoteWebDriver remoteWebDriver = null;
+                try {
+                    remoteWebDriver = new RemoteWebDriver(
+                            URI.create("http://localhost:4444/wd/hub").toURL(), desiredCapabilities);
+                    remoteWebDriver.manage().window().maximize();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                return remoteWebDriver;
         }
     }
 }

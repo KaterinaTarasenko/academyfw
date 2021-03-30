@@ -1,10 +1,9 @@
 package org.academy.ui.pages.administration;
 
-import org.academy.ui.pages.AbstractPage;
 import org.academy.ui.pages.AddUserPage;
 import org.openqa.selenium.By;
 
-public class UsersAndRolesPage extends AbstractPage {
+public class UsersAndRolesPage extends AdministrationPage {
     public UsersAndRolesPage() {
         super();
     }

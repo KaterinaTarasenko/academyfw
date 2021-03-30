@@ -4,6 +4,8 @@ import org.academy.ui.pages.AddProjectPage;
 import org.openqa.selenium.By;
 
 public class EditProjectPage extends AddProjectPage {
+
+
     public EditProjectPage() {
         super();
     }
@@ -21,4 +23,6 @@ public class EditProjectPage extends AddProjectPage {
         findElement(announcementField).clear();
         return this;
     }
+
+
 }

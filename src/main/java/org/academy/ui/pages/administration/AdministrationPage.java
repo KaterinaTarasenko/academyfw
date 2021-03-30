@@ -1,9 +1,10 @@
 package org.academy.ui.pages.administration;
 
 import org.academy.ui.pages.AbstractPage;
+import org.academy.ui.pages.MainPage;
 import org.openqa.selenium.By;
 
-public class AdministrationPage extends AbstractPage {
+public abstract class AdministrationPage extends AbstractPage {
     public AdministrationPage() {
         super();
     }
@@ -20,6 +21,13 @@ public class AdministrationPage extends AbstractPage {
     private static final By dataManagement = By.xpath("//a[@id='navigation-sub-subscription']");
     private static final By siteSettings = By.xpath("//a[@id='navigation-sub-sitesettings']");
 
+    private static final By dashboard = By.xpath("//a[@href='index.php?/dashboard']");
+
+    public OverviewPage clickOnOverviewBtn() {
+        waitUntilElementIsClickable(overview).click();
+        return new OverviewPage();
+    }
+
     public ProjectsPage clickOnProjectsBtn() {
         waitUntilElementIsClickable(projects).click();
         return new ProjectsPage();
@@ -28,5 +36,10 @@ public class AdministrationPage extends AbstractPage {
     public UsersAndRolesPage clickOnUsersBtn() {
         waitUntilElementIsClickable(usersAndRoles).click();
         return new UsersAndRolesPage();
+    }
+
+    public MainPage clickOnDashboardBtn() {
+        waitUntilElementIsClickable(dashboard).click();
+        return new MainPage();
     }
 }

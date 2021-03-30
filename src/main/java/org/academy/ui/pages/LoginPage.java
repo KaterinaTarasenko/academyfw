@@ -1,6 +1,5 @@
 package org.academy.ui.pages;
 
-import org.academy.utils.ui.WebConfig;
 import org.openqa.selenium.By;
 
 public class LoginPage extends AbstractPage {
