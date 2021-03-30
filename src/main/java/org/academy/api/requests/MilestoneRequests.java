@@ -12,10 +12,15 @@ import java.util.Map;
 public class MilestoneRequests extends Requests {
     private final MilestonePayloads milestonePayloads = new MilestonePayloads();
 
-    public Map<String, Object> addMilestoneRequest(String name, String... description){
+    public Map<String, Object> getMilestoneRequest(String milestoneId) {
+        Response response = getMethods.withoutParams(getMilestoneResource(milestoneId));
+        return ConvertMethods.convertResponseFromServerToHashMap(response);
+    }
+
+    public Map<String, Object> addMilestoneRequest(String projectId, String name, String... description){
 
         Response response =
-                postMethods.withoutParams(addMilestoneToProjectResource(),
+                postMethods.withoutParams(addMilestoneToProjectResource(projectId),
                         milestonePayloads.addMilestoneToProjectPayload(name, description));
 
         log.info("response code is " + response.getStatusCode());
@@ -33,10 +38,10 @@ public class MilestoneRequests extends Requests {
         return ConvertMethods.convertResponseFromServerToHashMap(response);
     }
 
-    public Map<String, Object> getAllMilestonesRequest() {
-        Response response = getMethods.withoutParams(getMilestonesResource());
-
-        log.info("response code is " + response.getStatusCode());
-        return ConvertMethods.convertResponseFromServerToHashMap(response);
-    }
+//    public Map<String, Object> getAllMilestonesRequest() {
+//        Response response = getMethods.withoutParams(getMilestoneResource());
+//
+//        log.info("response code is " + response.getStatusCode());
+//        return ConvertMethods.convertResponseFromServerToHashMap(response);
+//    }
 }

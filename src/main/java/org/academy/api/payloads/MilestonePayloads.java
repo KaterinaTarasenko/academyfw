@@ -23,6 +23,22 @@ public class MilestonePayloads extends Payload {
         return payload;
     }
 
+    public String updateMilestoneStartedOn(String name, String... startedOn) {
+        MilestoneModel milestoneModel = startedOn.length > 0
+                ? new MilestoneModel.Builder()
+                .name(name)
+                .description(startedOn[0])
+                .build()
+
+                : new MilestoneModel.Builder()
+                .name(name)
+                .build();
+
+        String payload = jsonFromObject(milestoneModel);
+        log.info("payload created = \r\n" + payload);
+        return payload;
+    }
+
     public String updateMilestoneWithCompleteField(String name, String description, boolean... isCompleted){
         MilestoneModel milestoneModel = isCompleted.length > 0
                 ? new MilestoneModel.Builder()

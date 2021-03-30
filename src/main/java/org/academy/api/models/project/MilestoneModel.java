@@ -13,6 +13,9 @@ public class MilestoneModel {
     @JsonProperty("is_started")
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private boolean isStarted;
+    @JsonProperty("start_on")
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private String startedOn;
 
     public MilestoneModel() {
     }
@@ -22,6 +25,7 @@ public class MilestoneModel {
         description = builder.description;
         isCompleted = builder.isCompleted;
         isStarted = builder.isStarted;
+        startedOn = builder.startedOn;
     }
 
     public String getName() {
@@ -56,11 +60,20 @@ public class MilestoneModel {
         isStarted = started;
     }
 
+    public String getStartedOn() {
+        return startedOn;
+    }
+
+    public void setStartedOn(String startedOn) {
+        this.startedOn = startedOn;
+    }
+
     public static class Builder {
         private String name;
         private String description;
         private boolean isCompleted;
         private boolean isStarted;
+        private String startedOn;
 
         public Builder() {
         }
@@ -82,6 +95,11 @@ public class MilestoneModel {
 
         public Builder isStarted(boolean isStarted){
             this.isStarted = isStarted;
+            return this;
+        }
+
+        public Builder startedOn(String startedOn){
+            this.startedOn = startedOn;
             return this;
         }
 

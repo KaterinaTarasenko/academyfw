@@ -57,11 +57,11 @@ public class LocalWebDriverManager {
                 desiredCapabilities.setBrowserName("chrome");
                 desiredCapabilities.setVersion("89.0");
                 desiredCapabilities.setCapability("enableVNC", true);
+                //desiredCapabilities.setCapability("sessionTimeout", "2m");
                 RemoteWebDriver remoteWebDriver = null;
                 try {
                     remoteWebDriver = new RemoteWebDriver(
-                            URI.create("http://localhost:4444/wd/hub").toURL(), desiredCapabilities
-                    );
+                            URI.create("http://localhost:4444/wd/hub").toURL(), desiredCapabilities);
                     remoteWebDriver.manage().window().maximize();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

@@ -88,8 +88,8 @@ public class MainPage extends AbstractPage {
         return new RunsPage();
     }
 
-    public MilestonePage clickOnMilestonePage(){
-        waitUntilElementIsClickable(testProject).click();
+    public MilestonePage clickOnMilestonePage(String projectName){
+        waitUntilElementIsClickable(By.xpath("//a[contains(.,'" + projectName + "')]")).click();
         return new MilestonePage();
     }
 }

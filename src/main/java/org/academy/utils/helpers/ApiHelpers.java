@@ -7,4 +7,9 @@ public class ApiHelpers {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         return String.valueOf(timestamp.getTime());
     }
+
+    public String getCurrentTimestampUnix() {
+        long time = System.currentTimeMillis()/1000;
+        return String.valueOf(time);
+    }
 }

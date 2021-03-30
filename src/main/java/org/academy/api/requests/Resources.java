@@ -43,12 +43,12 @@ public class Resources extends MainConfig {
         return read("rs.get_case");
     }
 
-    public static String addMilestoneToProjectResource() {
-        return read("rs.add_milestone").concat("5");
+    public static String addMilestoneToProjectResource(String projectId) {
+        return read("rs.add_milestone").concat(projectId);
     }
 
-    public static String getMilestonesResource() {
-        return read("rs.get_milestones").concat("9");
+    public static String getMilestoneResource(String milestoneId) {
+        return read("rs.get_milestone").concat(milestoneId);
     }
 
     public static String updateMilestoneResource(String milestoneId) {
